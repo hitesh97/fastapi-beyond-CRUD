@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, status
 
 from src.db.main import get_session
 from .exceptions import MemberNotFound
-from .schemas import Member, MemberCreateModel
+from .schemas import Member, MemberCreateModel, MemberCreateUpdateModel
 
 from .service import MemberService
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,7 +23,7 @@ async def get_all_head_members(session: AsyncSession = Depends(get_session)):
     return members
 
 @member_router.get("/{member_id}", response_model=Member, status_code=status.HTTP_200_OK)
-async def get_all_members(member_id:int, session: AsyncSession = Depends(get_session)):
+async def get_member_by_id(member_id:int, session: AsyncSession = Depends(get_session)):
     member = await member_service.get_member(member_id, session)
     
     if not member:
@@ -37,7 +37,7 @@ async def create_member(member_data: MemberCreateModel, session: AsyncSession = 
     return new_member
 
 @member_router.patch("/{member_id}", response_model=Member, status_code=status.HTTP_202_ACCEPTED)
-async def update_member(member_id:int, member_data: MemberCreateModel, session: AsyncSession = Depends(get_session)):
+async def update_member(member_id:int, member_data: MemberCreateUpdateModel, session: AsyncSession = Depends(get_session)):
     updated_member = await member_service.update_member(member_id, member_data, session)
     
     if not updated_member:
@@ -45,7 +45,7 @@ async def update_member(member_id:int, member_data: MemberCreateModel, session: 
     
     return updated_member
 
-@member_router.delete("/{member_id}", response_model=Member, status_code=status.HTTP_202_ACCEPTED)
+@member_router.delete("/{member_id}", status_code=status.HTTP_202_ACCEPTED)
 async def delete_member(member_id:int, session: AsyncSession = Depends(get_session)):
     deleted_member = await member_service.delete_member(member_id, session)
     

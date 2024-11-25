@@ -12,29 +12,66 @@ class Member(SQLModel, table=True):
     id: int | None  = Field(
         sa_column=Column(pg.BIGINT,default=None, primary_key=True, autoincrement=True)
     )
-    parentId: int = Field(
+    parentId: int | None = Field(
         sa_column=Column(pg.BIGINT, nullable=True)
     )
-    surname: str
-    title: str
-    first_name: str
-    last_name: str
-    birth_year: str
-    relation_to_head:str
-    second_name: str
-    fathers_name:str
-    mosal:str
-    profession:str
-    address_line1:str
-    address_line2:str
-    town:str
-    county:str
-    post_code:str
-    telephone:str
-    mobile:str
-    email:str
-    newsletter:bool = False
-    directory:bool = False
+    title: str | None = Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    first_name: str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    surname: str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    birth_year: str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    relation_to_head:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    second_name: str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    fathers_name:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    mosal:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    profession:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    address_line1:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    address_line2:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    town:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    county:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    post_code:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    telephone:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    mobile:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    email:str | None= Field(
+        sa_column=Column(pg.VARCHAR, nullable=True)
+    )
+    newsletter:bool | None = Field(
+        sa_column=Column(pg.BOOLEAN, nullable=False, default=False)
+    )
+    directory:bool | None = Field(
+        sa_column=Column(pg.BOOLEAN, nullable=False, default=False)
+    )
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
