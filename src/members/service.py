@@ -39,7 +39,7 @@ class MemberService:
             return None
         
         member_data_dict = member_data.model_dump(exclude_unset=True)
-        print(member_data_dict)
+
         for k, v in member_data_dict.items():
             setattr(member_to_update, k, v)
         
