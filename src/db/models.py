@@ -3,7 +3,40 @@ from datetime import date, datetime
 from typing import List, Optional
 
 import sqlalchemy.dialects.postgresql as pg
+
+# import sqlalchemy.dialects.mssql as mssql
 from sqlmodel import Column, Field, Relationship, SQLModel
+
+class Member(SQLModel, table=True):
+    __tablename__ = "members"
+    id: int | None  = Field(
+        sa_column=Column(pg.BIGINT,default=None, primary_key=True, autoincrement=True)
+    )
+    parentId: int = Field(
+        sa_column=Column(pg.BIGINT, nullable=True)
+    )
+    surname: str
+    title: str
+    first_name: str
+    last_name: str
+    birth_year: str
+    relation_to_head:str
+    second_name: str
+    fathers_name:str
+    mosal:str
+    profession:str
+    address_line1:str
+    address_line2:str
+    town:str
+    county:str
+    post_code:str
+    telephone:str
+    mobile:str
+    email:str
+    newsletter:bool = False
+    directory:bool = False
+    created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
 
 class User(SQLModel, table=True):

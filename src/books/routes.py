@@ -81,6 +81,7 @@ async def update_book(
 
     if updated_book is None:
         raise BookNotFound()
+
     else:
         return updated_book
 
