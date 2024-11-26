@@ -13,7 +13,7 @@ class UserCreateModel(BaseModel):
     last_name: str = Field(max_length=30)
     username: str = Field(max_length=24)
     email: str = Field(max_length=50)
-    password: str = Field(min_length=20)
+    password: str = Field(min_length=8, max_length=20)
 
     model_config = {
         "json_schema_extra": {

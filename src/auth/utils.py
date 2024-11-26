@@ -4,9 +4,18 @@ from datetime import datetime, timedelta
 from itsdangerous import URLSafeTimedSerializer
 
 import jwt
+from dataclasses import dataclass
+import bcrypt
 from passlib.context import CryptContext
 
 from src.config import Config
+
+@dataclass
+class SolveBugBcryptWarning:
+    __version__: str = getattr(bcrypt, "__version__")
+
+
+setattr(bcrypt, "__about__", SolveBugBcryptWarning())
 
 passwd_context = CryptContext(schemes=["bcrypt"])
 
