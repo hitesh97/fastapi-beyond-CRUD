@@ -1,10 +1,14 @@
 from fastapi import FastAPI
 from src.auth.routes import auth_router
 from src.books.routes import book_router
+from src.member_payments.exceptions import register_member_payment_errors
 from src.members.exceptions import register_member_errors
 from src.reviews.routes import review_router
 from src.tags.routes import tags_router
 from src.members.routes import member_router
+from src.member_payments.routes import member_payment_router
+
+from src.deleted_members.routes import deleted_member_router
 from .errors import register_all_errors
 from .middleware import register_middleware
 
@@ -40,6 +44,7 @@ app = FastAPI(
 
 register_all_errors(app)
 register_member_errors(app)
+register_member_payment_errors(app)
 
 register_middleware(app)
 
@@ -49,3 +54,6 @@ app.include_router(auth_router, prefix=f"{version_prefix}/auth", tags=["auth"])
 app.include_router(review_router, prefix=f"{version_prefix}/reviews", tags=["reviews"])
 app.include_router(tags_router, prefix=f"{version_prefix}/tags", tags=["tags"])
 app.include_router(member_router, prefix=f"{version_prefix}/members", tags=["members"])
+app.include_router(member_payment_router, prefix=f"{version_prefix}/member/payments", tags=["member_payments"])
+
+app.include_router(deleted_member_router, prefix=f"{version_prefix}/member/deleted", tags=["deleted_members"])

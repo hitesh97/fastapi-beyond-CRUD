@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, status
 
 from src.db.main import get_session
 from .exceptions import MemberNotFound
-from .schemas import Member, MemberCreateModel, MemberCreateUpdateModel
+from .schemas import Member, MemberCreateUpdateModel
 
 from .service import MemberService
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -32,7 +32,7 @@ async def get_member_by_id(member_id:int, session: AsyncSession = Depends(get_se
     return member
 
 @member_router.post("/", response_model=Member, status_code=status.HTTP_201_CREATED)
-async def create_member(member_data: MemberCreateModel, session: AsyncSession = Depends(get_session)):
+async def create_member(member_data: MemberCreateUpdateModel, session: AsyncSession = Depends(get_session)):
     new_member = await member_service.create_member(member_data, session)
     return new_member
 

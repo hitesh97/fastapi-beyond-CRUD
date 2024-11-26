@@ -11,6 +11,7 @@ class MemberService:
         result = await session.exec(statement)
         
         return result.all()
+
     async def get_all_members(self, session: AsyncSession):
         statement = select(Member).order_by(desc(Member.created_at))
         result = await session.exec(statement)

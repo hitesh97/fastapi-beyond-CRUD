@@ -36,6 +36,8 @@ class MemberPaymentInfo(SQLModel, table=True):
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
+    def __repr__(self):
+        return f"<MemberPayment id:{self.id} member_id:{self.member_id}>"
 
 class DeletedMember(SQLModel, table=True):
     __tablename__ = "deleted_members"
@@ -111,6 +113,8 @@ class DeletedMember(SQLModel, table=True):
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
+    def __repr__(self):
+        return f"<DeletedMember {self.first_name} {self.surname}>"
 
 class Member(SQLModel, table=True):
     __tablename__ = "members"
@@ -183,6 +187,8 @@ class Member(SQLModel, table=True):
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
+    def __repr__(self):
+        return f"<Member {self.first_name} {self.surname}>"
 
 class User(SQLModel, table=True):
     __tablename__ = "users"
