@@ -12,7 +12,7 @@ from typing import List
 member_router = APIRouter()
 member_service = MemberService()
 
-@member_router.get("/", response_model=List[Member], status_code=status.HTTP_200_OK)
+@member_router.get("", response_model=List[Member], status_code=status.HTTP_200_OK)
 async def get_all_members(session: AsyncSession = Depends(get_session)):
     members = await member_service.get_all_members(session)
     return members
@@ -31,7 +31,7 @@ async def get_member_by_id(member_id:int, session: AsyncSession = Depends(get_se
     
     return member
 
-@member_router.post("/", response_model=Member, status_code=status.HTTP_201_CREATED)
+@member_router.post("", response_model=Member, status_code=status.HTTP_201_CREATED)
 async def create_member(member_data: MemberCreateUpdateModel, session: AsyncSession = Depends(get_session)):
     new_member = await member_service.create_member(member_data, session)
     return new_member

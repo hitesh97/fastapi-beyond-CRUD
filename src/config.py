@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+version = "v1"
 
 class Settings(BaseSettings):
     DATABASE_URL: str

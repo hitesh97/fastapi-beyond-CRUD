@@ -54,5 +54,5 @@ def test_book():
         page_count=200,
         language="English",
         published_date=datetime.now(),
-        update_at=datetime.now()
+        updated_at=datetime.now()
     )

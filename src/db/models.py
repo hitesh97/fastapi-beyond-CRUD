@@ -34,7 +34,7 @@ class MemberPaymentInfo(SQLModel, table=True):
         sa_column=Column(pg.BOOLEAN, nullable=False, default=False)
     )
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
     def __repr__(self):
         return f"<MemberPayment id:{self.id} member_id:{self.member_id}>"
@@ -111,7 +111,7 @@ class DeletedMember(SQLModel, table=True):
         sa_column=Column(pg.VARCHAR, nullable=True)
     )
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
     def __repr__(self):
         return f"<DeletedMember {self.first_name} {self.surname}>"
@@ -185,7 +185,7 @@ class Member(SQLModel, table=True):
         sa_column=Column(pg.BOOLEAN, nullable=False, default=False, server_default="false")
     )
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
 
     def __repr__(self):
         return f"<Member {self.first_name} {self.surname}>"
@@ -207,7 +207,7 @@ class User(SQLModel, table=True):
         sa_column=Column(pg.VARCHAR, nullable=False), exclude=True
     )
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     books: List["Book"] = Relationship(
         back_populates="user", sa_relationship_kwargs={"lazy": "selectin"}
     )
@@ -254,7 +254,7 @@ class Book(SQLModel, table=True):
     language: str
     user_uid: Optional[uuid.UUID] = Field(default=None, foreign_key="users.uid")
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     user: Optional[User] = Relationship(back_populates="books")
     reviews: List["Review"] = Relationship(
         back_populates="book", sa_relationship_kwargs={"lazy": "selectin"}
@@ -279,7 +279,7 @@ class Review(SQLModel, table=True):
     user_uid: Optional[uuid.UUID] = Field(default=None, foreign_key="users.uid")
     book_uid: Optional[uuid.UUID] = Field(default=None, foreign_key="books.uid")
     created_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
-    update_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
+    updated_at: datetime = Field(sa_column=Column(pg.TIMESTAMP, default=datetime.now))
     user: Optional[User] = Relationship(back_populates="reviews")
     book: Optional[Book] = Relationship(back_populates="reviews")
 

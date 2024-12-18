@@ -11,9 +11,8 @@ from src.member_payments.routes import member_payment_router
 from src.deleted_members.routes import deleted_member_router
 from .errors import register_all_errors
 from .middleware import register_middleware
+from .config import version
 
-
-version = "v1"
 
 description = """
 A REST API for a book review web service.

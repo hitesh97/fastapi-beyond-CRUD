@@ -13,7 +13,7 @@ class MemberPayment(BaseModel):
     cheque_no: Optional[str] = None
     is_donation: Optional[bool] = None
     created_at: datetime
-    update_at: datetime
+    updated_at: datetime
 
 
 class MemberPaymentCreateUpdateModel(BaseModel):

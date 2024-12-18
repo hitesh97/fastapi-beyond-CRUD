@@ -28,7 +28,7 @@ class DeletedMember(BaseModel):
     directory:Optional[bool] = False
     deleted_reason:Optional[str]=  None
     created_at: datetime
-    update_at: datetime
+    updated_at: datetime
 
 
 class DeletedMemberCreateUpdateModel(BaseModel):
